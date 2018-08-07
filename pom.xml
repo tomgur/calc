@@ -49,7 +49,7 @@
                                 <groupname>root</groupname>
                                 <sources>
                                     <source>
-                                        <location>/target/classes</location>
+                                        <location>${WORKSPACE}/target/classes</location>
                                     </source>
                                 </sources>
                             </mapping>
