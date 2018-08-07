@@ -8,12 +8,6 @@
     <artifactId>calc</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <properties>
-        <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
-        <project.build.group>Development/Tools</project.build.group>
-        <group>Development/Tools</group>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -45,6 +39,7 @@
                         </goals>
                         <configuration>
                             <group>Development/Tools</group>
+                            <sourceEncoding>utf-8</sourceEncoding>
                         </configuration>
                     </execution>
                 </executions>
