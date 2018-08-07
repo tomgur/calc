@@ -43,13 +43,13 @@
 
                             <mappings>
                             <mapping>
-                                <directory>target</directory>
+                                <directory>out</directory>
                                 <filemode>750</filemode>
                                 <username>root</username>
                                 <groupname>root</groupname>
                                 <sources>
                                     <source>
-                                        <location>${WORKSPACE}/target</location>
+                                        <location>/target</location>
                                     </source>
                                 </sources>
                             </mapping>
