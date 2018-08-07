@@ -12,8 +12,10 @@ pipeline {
         stage('Test') {
             steps {
                 echo '------------ Testing ------------'
-                sh "mvn --batch-mode -V -U -e clean test -Dsurefire.useFile=false"
-            }
+                withEnv(["JAVA_HOME=${ tool 'JDK1.8' }", "PATH+MAVEN=${tool 'M2'}/bin:${env.JAVA_HOME}/bin"]) {
+                    sh "mvn --batch-mode -V -U -e clean test -Dsurefire.useFile=false"
+                }
+                }
         }
         stage('Deploy') {
             steps {
