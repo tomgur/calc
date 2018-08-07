@@ -43,7 +43,7 @@
 
                             <mappings>
                             <mapping>
-                                <directory>out</directory>
+                                <directory>/tmp/</directory>
                                 <filemode>750</filemode>
                                 <username>root</username>
                                 <groupname>root</groupname>
