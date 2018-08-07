@@ -25,8 +25,7 @@ pipeline {
                 withEnv(["JAVA_HOME=${ tool 'JDK1.8' }", "PATH+MAVEN=${tool 'M2'}/bin:${env.JAVA_HOME}/bin"]) {
                     sh "mvn --batch-mode -V -U -e clean package -DskipTests"
                 }
-                archiveArtifacts artifacts: 'target/rpm/calc/RPMS/noarch/*.rpm', onlyIfSuccessful: true
-                archiveArtifacts artifacts: 'target/*.jar', onlyIfSuccessful: true
+                archiveArtifacts artifacts: 'target/rpm/calc/RPMS/noarch/*.rpm,target/*.jar', onlyIfSuccessful: true
             }
 
         }
