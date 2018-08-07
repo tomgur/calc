@@ -43,7 +43,7 @@
 
                             <mappings>
                             <mapping>
-                                <directory>/rpm</directory>
+                                <directory>/rpm/target</directory>
                                 <filemode>750</filemode>
                                 <username>root</username>
                                 <groupname>root</groupname>
