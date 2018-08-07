@@ -43,13 +43,13 @@
 
                             <mappings>
                             <mapping>
-                                <directory>target/classes</directory>
+                                <directory>/target/classes</directory>
                                 <filemode>750</filemode>
                                 <username>root</username>
                                 <groupname>root</groupname>
                                 <sources>
                                     <source>
-                                        <location>target/classes</location>
+                                        <location>/target/classes</location>
                                     </source>
                                 </sources>
                             </mapping>
