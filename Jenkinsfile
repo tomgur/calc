@@ -21,6 +21,7 @@ pipeline {
         }
         stage('Build RPM') {
             steps {
+                echo '------------ Building the RPM ------------'
                 withEnv(["JAVA_HOME=${ tool 'JDK1.8' }", "PATH+MAVEN=${tool 'M2'}/bin:${env.JAVA_HOME}/bin"]) {
                     sh "mvn --batch-mode -V -U -e clean package -DskipTests"
                 }
