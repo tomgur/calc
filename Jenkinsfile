@@ -19,9 +19,11 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
+        stage('Build RPM') {
             steps {
-                echo 'Deploying....'
+                withEnv(["JAVA_HOME=${ tool 'JDK1.8' }", "PATH+MAVEN=${tool 'M2'}/bin:${env.JAVA_HOME}/bin"]) {
+                    sh "mvn --batch-mode -V -U -e clean rpm:rpm"
+                }
             }
         }
     }
