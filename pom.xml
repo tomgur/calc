@@ -16,10 +16,6 @@
         </dependency>
     </dependencies>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <build>
         <plugins>
             <plugin>
@@ -44,6 +40,20 @@
                         <configuration>
                             <group>Development/Tools</group>
                             <sourceEncoding>utf-8</sourceEncoding>
+
+                            <mappings>
+                            <mapping>
+                                <directory>target/classes</directory>
+                                <filemode>750</filemode>
+                                <username>root</username>
+                                <groupname>root</groupname>
+                                <sources>
+                                    <source>
+                                        <location>target/classes</location>
+                                    </source>
+                                </sources>
+                            </mapping>
+                            </mappings>
                         </configuration>
                     </execution>
                 </executions>
