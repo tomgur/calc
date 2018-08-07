@@ -10,7 +10,8 @@
 
     <properties>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
-
+        <project.build.group>Development/Tools</project.build.group>
+        <group>Development/Tools</group>
     </properties>
 
     <dependencies>
