@@ -23,7 +23,7 @@ pipeline {
             steps {
                 echo '------------ Building the RPM ------------'
                 withEnv(["JAVA_HOME=${ tool 'JDK1.8' }", "PATH+MAVEN=${tool 'M2'}/bin:${env.JAVA_HOME}/bin"]) {
-                    sh "mvn --batch-mode -V -U -e clean package -DskipTests"
+                    sh "mvn --batch-mode -V -U -e clean package -DskipTests -p rpm"
                 }
                 archiveArtifacts artifacts: 'target/rpm/calc/RPMS/noarch/*.rpm,target/*.jar', onlyIfSuccessful: true
             }
