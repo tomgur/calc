@@ -40,16 +40,15 @@
                         <configuration>
                             <group>Development/Tools</group>
                             <sourceEncoding>utf-8</sourceEncoding>
-
                             <mappings>
                             <mapping>
-                                <directory>/tmp/</directory>
+                                <directory>/calc/</directory>
                                 <filemode>750</filemode>
                                 <username>root</username>
                                 <groupname>root</groupname>
                                 <sources>
                                     <source>
-                                        <location>${WORKSPACE}/target</location>
+                                        <location>${WORKSPACE}/target/jar/</location>
                                     </source>
                                 </sources>
                             </mapping>
