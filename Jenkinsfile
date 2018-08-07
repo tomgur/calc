@@ -26,6 +26,7 @@ pipeline {
                     sh "mvn --batch-mode -V -U -e clean package -DskipTests"
                 }
                 archiveArtifacts artifacts: 'target/rpm/calc/RPMS/noarch/*.rpm', onlyIfSuccessful: true
+                archiveArtifacts artifacts: 'target/*.jar', onlyIfSuccessful: true
             }
 
         }
