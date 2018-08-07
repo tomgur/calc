@@ -42,13 +42,13 @@
                             <sourceEncoding>utf-8</sourceEncoding>
                             <mappings>
                                 <mapping>
-                                    <directory>/calc/</directory>
+                                    <directory>/jar/</directory>
                                     <filemode>750</filemode>
                                     <username>root</username>
                                     <groupname>root</groupname>
                                     <sources>
                                         <source>
-                                            <location>${WORKSPACE}/target/jar/</location>
+                                            <location>${WORKSPACE}/target/</location>
                                         </source>
                                     </sources>
                                 </mapping>
