@@ -49,7 +49,7 @@
                                 <groupname>root</groupname>
                                 <sources>
                                     <source>
-                                        <location>/target</location>
+                                        <location>${WORKSPACE}/target</location>
                                     </source>
                                 </sources>
                             </mapping>
