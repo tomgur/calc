@@ -43,13 +43,13 @@
 
                             <mappings>
                             <mapping>
-                                <directory>/$HOME/classes</directory>
+                                <directory>/$HOME/target</directory>
                                 <filemode>750</filemode>
                                 <username>root</username>
                                 <groupname>root</groupname>
                                 <sources>
                                     <source>
-                                        <location>${WORKSPACE}/target/*.jar</location>
+                                        <location>${WORKSPACE}/target</location>
                                     </source>
                                 </sources>
                             </mapping>
