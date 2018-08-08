@@ -36,12 +36,14 @@ public class Main {
 
     private static void addSteps() {
         String s = scanner.nextLine();
+        //todo: input validation!!!!!!!!
 
         if ("".equals(s)) {
             hasNext = false;
             return;
         }
 
+        //todo: implement java expressions here as well (+= etc.)
         String[] split = s.split("=");
 
         if (!properties.containsKey(split[0])) {
@@ -87,7 +89,7 @@ public class Main {
                 if (isNumber(simplifiedRightHandSide)) {
                     properties.setProperty(leftHandSide, simplifiedRightHandSide);
                     print(leftHandSide + "=" + simplifiedRightHandSide, true);
-                //todo: recurse - there may be more parts
+                //todo: recurse - there may be more parts!!!
                 } else {
                     System.err.println("ERROR - element is not a number.....");
                 }
@@ -128,7 +130,7 @@ public class Main {
                     if (isSimpleEquation(strings)) {
                         return Integer.parseInt(solveSimpleEquation(strings));
                     } else {
-
+                        //todo: implement recursion
                     }
 
 
