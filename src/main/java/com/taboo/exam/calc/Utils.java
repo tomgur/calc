@@ -23,6 +23,17 @@ public class Utils {
         }
         return "BLAT!!!!";
     }
+
+    public static String getWelcomMessage(){
+        return
+                "******************************************************************************\n" +
+                        "***         Hi welcome to the Tabo**** expression calculator               ***\n" +
+                        "***               Please enter equations in the form of:                   ***\n" +
+                        "*** 'A [arithmetic operation [+-/*] OR [java operation ++ -- += /= *=] B   ***\n" +
+                        "***   New variables will be stored and can be called in later equations    ***\n" +
+                        "******************************************************************************\n";
+    }
+
     public static boolean isNumber(String s) {
         try {
             Integer.parseInt(s);

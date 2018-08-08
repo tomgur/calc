@@ -8,13 +8,6 @@ import java.util.*;
 import static com.taboo.exam.calc.Utils.*;
 
 public class Main {
-    public static final String WELCOME_MSG =
-            "******************************************************************************\n" +
-                    "***         Hi welcome to the Tabo**** expression calculator               ***\n" +
-                    "***               Please enter equations in the form of:                   ***\n" +
-                    "*** 'A [arithmetic operation [+-/*] OR [java operation ++ -- += /= *=] B   ***\n" +
-                    "***   New variables will be stored and can be called in later equations    ***\n" +
-                    "******************************************************************************\n";
     private static boolean hasNext = true;
     private static Scanner scanner = new Scanner(System.in);
     private static Properties properties = new Properties();
@@ -22,13 +15,17 @@ public class Main {
 
 
     public static void main(String[] args) throws IOException {
-        print(WELCOME_MSG, true);
+        print(getWelcomMessage(), true);
+
         while (true) {
             if (hasNext) {
+                // add more calculation steps as long as user did not hit enter
                 print("Please write an equation:", true);
                 addSteps();
             } else {
+                //user has not entered any input
                 if (areYouSure()) {
+                    //user has approved calculation start
                     calculate();
                     break;
                 }
@@ -74,6 +71,7 @@ public class Main {
         print("Starting Calculation", true);
         for (Step step : steps) {
             print("Input: " + step.getInput(), true);
+            // if the left hand side of the equation is a number
             if (step.isStepEvaluated()) {
                 print(step.getLHS() + "=" + step.getRHS(), true);
                 print("------------------------", true);
@@ -84,16 +82,19 @@ public class Main {
             String rightHandSide = step.getRHS();
 
             if (isEquation(rightHandSide)) {
+                // string containing [+-*/] but not [++]
                 String simplifiedRightHandSide = simplify(rightHandSide);
                 if (isNumber(simplifiedRightHandSide)) {
                     properties.setProperty(leftHandSide, simplifiedRightHandSide);
                     print(leftHandSide + "=" + simplifiedRightHandSide, true);
+                //todo: recurse - there may be more parts
                 } else {
                     System.err.println("ERROR - element is not a number.....");
                 }
             }
 
             if (isJavaExpression(rightHandSide)) {
+                //string containing [++]
                 int i = evaluateJava(rightHandSide);
                 print(leftHandSide + "=" + i, true);
                 properties.setProperty(leftHandSide, String.valueOf(i));
