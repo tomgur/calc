@@ -1,6 +1,6 @@
 #!groovy
 pipeline {
-    agent any
+    agent {label 'rpm'}
 
     stages {
         stage('Build') {
