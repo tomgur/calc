@@ -7,6 +7,7 @@ import java.util.*;
 
 import static com.taboo.exam.calc.Utils.*;
 import static com.taboo.exam.calc.Validators.isJavaExpression;
+import static com.taboo.exam.calc.Validators.validateInput;
 
 public class Main {
     private static boolean hasNext = true;
@@ -17,6 +18,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         print(getWelcomMessage(), true);
+        print(getInstructions(), true);
 
         while (true) {
             if (hasNext) {
@@ -37,21 +39,20 @@ public class Main {
 
     private static void addSteps() {
         String s = scanner.nextLine();
-        //todo: input validation!!!!!!!!
-        //todo: check if lhs is a valid var name [a-z]
-        //todo: check that all operations are space delimited
-
 
         if ("".equals(s)) {
             hasNext = false;
             return;
         }
 
+        //todo: check that all operations are space delimited
         //todo: implement java expressions here as well (+= etc.)
-        String[] split = s.split("=");
-
-        Equation e;
-
+        if(!validateInput(s)){
+            print("Invalid input [" + s + "]",true);
+            print(getInstructions(),true);
+            return;
+        }
+        String[] split = s.split(" = ");
 
         Step step = new Step(s);
         steps.add(step);

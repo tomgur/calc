@@ -3,6 +3,7 @@ package com.taboo.exam.calc;
 import org.junit.Test;
 
 import static com.taboo.exam.calc.Validators.isJavaExpression;
+import static com.taboo.exam.calc.Validators.validateInput;
 import static org.junit.Assert.*;
 
 public class ValidatorsTest {
@@ -28,4 +29,15 @@ public class ValidatorsTest {
         assertTrue(isJavaExpression(inputs[7]));
     }
 
+    @Test
+    public void validateInputTest() throws Exception {
+            assertEquals(false,validateInput(inputs[0]));
+            assertEquals(true,validateInput(inputs[1]));
+            assertEquals(false,validateInput(inputs[2]));
+            assertEquals(true,validateInput(inputs[3]));
+            assertEquals(false,validateInput(inputs[4]));
+            assertEquals(true,validateInput(inputs[5]));
+            assertEquals(false,validateInput(inputs[6]));
+            assertEquals(false,validateInput(inputs[7]));
+    }
 }

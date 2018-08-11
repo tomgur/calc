@@ -19,4 +19,19 @@ public class Validators {
                 s.contains("*=") ||
                 s.contains("/="));
     }
+
+    public static boolean validateInput(String input) {
+        if (!input.contains(" = ")){
+            return false;
+        }
+
+        if (input.matches("^[a-z]\\s=\\s.*$")){
+            String[] split = input.split(" = ");
+            assert (split[0].matches("^[a-z]$"));
+            if (split.length == 2){
+                return true;
+            }
+        }
+        return false;
+    }
 }

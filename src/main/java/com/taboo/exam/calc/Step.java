@@ -9,8 +9,9 @@ public class Step {
 
     public Step(String input) {
         this.input = input;
-        this.lhs = input.split("=")[0];
-        this.rhs = input.split("=")[1];
+        String[] split = input.split(" = ");
+        this.lhs = split[0];
+        this.rhs = split[1];
     }
 
     public String getInput() {
