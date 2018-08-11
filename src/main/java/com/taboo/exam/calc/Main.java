@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.*;
 
 import static com.taboo.exam.calc.Utils.*;
+import static com.taboo.exam.calc.Validators.isJavaExpression;
 
 public class Main {
     private static boolean hasNext = true;
@@ -37,6 +38,9 @@ public class Main {
     private static void addSteps() {
         String s = scanner.nextLine();
         //todo: input validation!!!!!!!!
+        //todo: check if lhs is a valid var name [a-z]
+        //todo: check that all operations are space delimited
+
 
         if ("".equals(s)) {
             hasNext = false;
@@ -46,16 +50,14 @@ public class Main {
         //todo: implement java expressions here as well (+= etc.)
         String[] split = s.split("=");
 
-        if (!properties.containsKey(split[0])) {
-            print(split[0] + " Not found in memory. Storing", true);
-            Step step = new Step(s);
-            steps.add(step);
-            properties.setProperty(split[0], split[1]);
-            print("Stored", true);
-            print(properties.toString(), true);
-            return;
-        }
-        print(split[0] + " found in memory. Value [" + properties.getProperty(split[0]) + "]", true);
+        Equation e;
+
+
+        Step step = new Step(s);
+        steps.add(step);
+        properties.setProperty(split[0], split[1]);
+        print("Stored", true);
+        print(properties.toString(), true);
     }
 
     private static boolean areYouSure() {
@@ -141,7 +143,7 @@ public class Main {
         if (value.contains("++")) {
             result = doIncrement(value, result);
         } else {
-            throw new UnsopportedOperationException("flsdkjsfdlksdjfldfskj!!!!!","+=");
+            throw new UnsopportedOperationException("+=");
         }
         return result;
     }

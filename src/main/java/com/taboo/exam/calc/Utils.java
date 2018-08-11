@@ -52,11 +52,9 @@ public class Utils {
         }
         return false;
     }
-    public static boolean isJavaExpression(String s) {
-        if (s.contains("++")) {
-            return true;
-        }
-        return false;
+
+    public static boolean containsVars(String s){
+        return s.matches(".*[a-z].*");
     }
     public static boolean isSimpleEquation(List<String> list) {
         if (list.size() == 3 &&
@@ -99,7 +97,7 @@ public class Utils {
                 }
 
                 if (isNumber(s) ||
-                        isVariable(s) ||
+                        isValidVarName(s) ||
                         isOperator(s)) {
                     list.add(s);
                     continue;
@@ -151,12 +149,8 @@ public class Utils {
         return false;
     }
 
-    public static boolean isVariable(String s){
-        if (s.length() == 1 &&
-                s.matches("^[a-z]{1}$")) {
-            return true;
-        }
-        return false;
+    public static boolean isValidVarName(String s){
+        return s.matches("^[a-z]{1}$");
     }
 
     public static String listToString(List<String> parts) {
