@@ -18,11 +18,11 @@ public class Step {
         return input;
     }
 
-    public String getLHS() {
+    public String getLeftHandSide() {
         return lhs;
     }
 
-    public String getRHS() {
+    public String getRightHandSide() {
         return rhs;
     }
 
@@ -36,7 +36,7 @@ public class Step {
 
     public boolean isStepEvaluated() {
         try {
-            int i = Integer.parseInt(getRHS());
+            int i = Integer.parseInt(getRightHandSide());
         } catch (NumberFormatException e) {
             return false;
         }

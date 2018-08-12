@@ -45,7 +45,6 @@ public class Main {
             return;
         }
 
-        //todo: check that all operations are space delimited
         //todo: implement java expressions here as well (+= etc.)
         if(!validateInput(s)){
             print("Invalid input [" + s + "]",true);
@@ -78,60 +77,63 @@ public class Main {
             print("Input: " + step.getInput(), true);
             // if the left hand side of the equation is a number
             if (step.isStepEvaluated()) {
-                print(step.getLHS() + "=" + step.getRHS(), true);
+                print(step.getLeftHandSide() + "=" + step.getRightHandSide(), true);
                 print("------------------------", true);
                 continue;
             }
 
-            String leftHandSide = step.getLHS();
-            String rightHandSide = step.getRHS();
+            //todo: then if there are devisions or multiplications --> calculate
+            //todo: then split by +
+            //todo then split by -
+            if (isJavaExpression(step.getRightHandSide())) {
+                //string containing [++]
+                //todo: WRONG! java expressions --> replace
+                String replacedRightHandSide = replaceJava(step.getRightHandSide());
+                print(step.getLeftHandSide() + " = " + replacedRightHandSide, true);
+                properties.setProperty(step.getLeftHandSide(), replacedRightHandSide);
+            }
 
-            if (isEquation(rightHandSide)) {
+            if (isEquation(step.getRightHandSide())) {
                 // string containing [+-*/] but not [++]
-                String simplifiedRightHandSide = simplify(rightHandSide);
+                String simplifiedRightHandSide = simplify(step.getRightHandSide());
                 if (isNumber(simplifiedRightHandSide)) {
-                    properties.setProperty(leftHandSide, simplifiedRightHandSide);
-                    print(leftHandSide + "=" + simplifiedRightHandSide, true);
-                //todo: recurse - there may be more parts!!!
+                    properties.setProperty(step.getLeftHandSide(), simplifiedRightHandSide);
+                    print(step.getLeftHandSide() + "=" + simplifiedRightHandSide, true);
+                    //todo: recurse - there may be more parts!!!
                 } else {
                     System.err.println("ERROR - element is not a number.....");
                 }
             }
 
-            if (isJavaExpression(rightHandSide)) {
-                //string containing [++]
-                int i = evaluateJava(rightHandSide);
-                print(leftHandSide + "=" + i, true);
-                properties.setProperty(leftHandSide, String.valueOf(i));
-            }
             print(properties.toString(), true);
             print("------------------------", true);
         }
         print("Calculation Ended", true);
     }
 
-    static int evaluateJava(String value) {
-        int result = 0;
-        if (value.contains(" ")) {
-            String[] elements = value.split(" ");
+    static String replaceJava(String input) {
+        StringBuilder result = new StringBuilder();
+        //        int result = 0;
+        if (input.contains(" ")) {
+            String[] elements = input.split(" ");
             for (int i = 0; i < elements.length; i++) {
                 String element = elements[i];
                 if (isNumber(element)) {
-                    result += Integer.parseInt(element);
+                    result.append(element);
                     continue;
                 }
                 if (isOperator(element)) {
                     if (element.equals("+")) {
-                        result += Integer.parseInt(elements[i + 1]);
+                        result.append(elements[i + 1]);
                         continue;
                     }
                 }
                 if (isJavaExpression(element)) {
-                    int i1 = evaluateJava(element);
-                    String replace = value.replace(element, String.valueOf(i1));
+                    String i1 = replaceJava(element);
+                    String replace = input.replace(element, i1);
                     List<String> strings = listParts(replace);
                     if (isSimpleEquation(strings)) {
-                        return Integer.parseInt(solveSimpleEquation(strings));
+                        return solveSimpleEquation(strings);
                     } else {
                         //todo: implement recursion
                     }
@@ -141,12 +143,12 @@ public class Main {
             }
         }
 
-        if (value.contains("++")) {
-            result = doIncrement(value, result);
+        if (input.contains("++")) {
+            result = new StringBuilder(doIncrement(input));
         } else {
             throw new UnsopportedOperationException("+=");
         }
-        return result;
+        return result.toString();
     }
 
     private static String getVarValue(String s) {
@@ -157,22 +159,24 @@ public class Main {
         return property;
     }
 
-    private static int doIncrement(String value, int result) {
+    private static String doIncrement(String value) {
         String[] elements = value.split("\\+{2}");
-        String propKey = null;
-        int propVal = 0;
+        String result = "";
+        String propKey = "";
+        String propVal = "";
 
         if (value.startsWith("++")) {
             // pre-increment
             propKey = elements[1];
-            propVal = Integer.parseInt(properties.getProperty(propKey));
-            result = ++propVal;
+            propVal = getVarValue(propKey);
+            result = "1 + " + propVal;
         } else if (value.endsWith("++")) {
             propKey = elements[0];
-            propVal = Integer.parseInt(properties.getProperty(propKey));
-            result = propVal++;
+            propVal = getVarValue(propKey);
+            result = propVal;
         }
-        properties.setProperty(propKey, String.valueOf(propVal));
+        assert propVal != null;
+        properties.setProperty(propKey, String.valueOf(Integer.parseInt(propVal)+1));
         print(propKey + "=" + properties.getProperty(propKey), true);
         return result;
     }
