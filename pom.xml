@@ -4,10 +4,10 @@
 
     <groupId>com.taboo.exam</groupId>
     <artifactId>calc</artifactId>
-    <version>1.2</version>
+    <version>1.2-SNAPSHOT</version>
 
     <scm>
-        <developerConnection>scm:git:git@git://github.com/tomgur/calc.git</developerConnection>
+        <developerConnection>scm:git://github.com/tomgur/calc.git</developerConnection>
       <tag>calc-1.2</tag>
   </scm>
 
