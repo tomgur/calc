@@ -7,7 +7,7 @@
     <version>1.1</version>
 
     <scm>
-        <connection>scm:git:https://github.com/tomgur/calc.git</connection>
+        <connection>scm:https://github.com/tomgur/calc.git</connection>
         <developerConnection>scm:git:https://github.com:tomgur/calc.git</developerConnection>
       <tag>calc-1.1</tag>
   </scm>
